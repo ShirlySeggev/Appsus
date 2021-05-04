@@ -1,0 +1,30 @@
+.notesAdd-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.search-input,
+.notesAdd-input {
+    width: 50%;
+}
+
+.note-preview {
+    box-shadow: 0 0px 3px 2px #7e7d7d78;
+    padding: 5px 10px;
+    border-radius: 5px;
+    border: 2px solid transparent;
+    transition: 0.3s;
+    text-align: center;
+    margin-block-start: 10px;
+}
+
+.note-preview:hover {
+    transform: scale(1.025);
+    box-shadow: 0 0 0 0 transparent, 0 0 0 0 transparent, 0 2px 15px rgb(0 0 0 / 30%);
+}
+
+.note-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
