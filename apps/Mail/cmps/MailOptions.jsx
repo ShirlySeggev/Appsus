@@ -3,7 +3,7 @@ import { MailApp } from './MailApp.jsx'
 
 
 const { Link } = ReactRouterDOM;
-const Modal =window.ReactBootstrap.Modal; 
+// const Modal =window.ReactBootstrap.Modal; 
 export class MailOptions extends React.Component {
   state={
     isShown:false
@@ -24,12 +24,12 @@ export class MailOptions extends React.Component {
          <button className="Starred">Starred</button>
          <button className="Sent" >Sent</button>
          <button className="Drafts">Drafts</button>
-         <Modal show={this.state.isShown} onHide={this.handleClose} >
+         {/* <Modal show={this.state.isShown} onHide={this.handleClose} >
         <Modal.Header closeButton>
           <Modal.Title>Modal heading</Modal.Title>
         </Modal.Header>
-        <Modal.Body> <ComposeMail /> </Modal.Body>
-      </Modal>
+        <Modal.Body> <ComposeMail  onSendMail={this.props.onSendMail} /> </Modal.Body>
+      </Modal> */}
       </h1>
       
     )

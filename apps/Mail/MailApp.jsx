@@ -1,11 +1,11 @@
 
 import { MailServices } from '../Mail/services/mail-sevice.js'
-// import { utilServices } from 'services/util-service.js'
+// import { utilService } from 'services/util-service.js'
 import { MailList } from './cmps/MailList.jsx'
 import { MailOptions } from './cmps/MailOptions.jsx'
 import { MailPreview } from './cmps/MailPreview.jsx'
 import { SearchMail } from './cmps/searchMail.jsx'
-import { LongTxt } from "../cmps/LongTxt.jsx";
+
 
 
 export class MailApp extends React.Component {
@@ -13,6 +13,7 @@ export class MailApp extends React.Component {
         mails: null,
         filterBy:null,
         isLongTxtShown: false
+        
     }
 
     componentDidMount() {
@@ -37,6 +38,16 @@ export class MailApp extends React.Component {
     showMore = () => {
         this.setState({ isLongTxtShown: !this.state.isLongTxtShown });
     }
+    onSendMail=(mail) => {
+        MailServices.sendMail(mail)
+        .then(mails => {this.setState(mails)})
+
+    }
+    onOpenMail = (mail) => {
+        console.log(mail.id);
+        MailServices.show(mail.id)
+        .then(mails => {this.setState(mails)})
+    }
     render() {
         const { mails,isLongTxtShown } = this.state
         if (!mails) return <div>Loading...</div>
@@ -45,8 +56,8 @@ export class MailApp extends React.Component {
             <section>
                 <SearchMail className="search-mails" />
                 <div className="flex">
-                <MailOptions className="options"mails={mails} /> 
-                <MailList mails={mails} isLongTxtShown={isLongTxtShown} className="mails" onOpenMail={(mailId) => this.onOpenMail(mailId)} onDelete={(mailId) => this.onDelete(mailId)} />
+                <MailOptions className="options" onSendMail={this.onSendMail} mails={mails} /> 
+                <MailList   mails={mails} isLongTxtShown={isLongTxtShown} className="mails" onOpenMail={(mailId) => this.onOpenMail(mailId)} onDelete={(mailId) => this.onDelete(mailId)} />
                 </div>
             </section>
         )
