@@ -1,7 +1,6 @@
 import { NoteSearch } from './cmps/NoteSearch.jsx';
 import { NotesAdd } from './cmps/NotesAdd.jsx';
 import { NotesList } from './cmps/NotesList.jsx';
-import { NotePreview } from './cmps/NotePreview.jsx';
 import { NoteUpdate } from './cmps/NoteUpdate.jsx';
 
 import { keepService } from './services/keep-service.js';
