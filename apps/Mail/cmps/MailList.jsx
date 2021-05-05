@@ -2,11 +2,9 @@ import { MailPreview } from './MailPreview.jsx'
 import { MailApp } from './cmps/MailApp.jsx'
 
 
-export function MailList({ mails }) {
-  console.log(mails);
+export function MailList({ mails, onDelete,isLongTxtShown }) {
   return <section className="mail-list">
-    {/* <h1>Inbox:</h1> */}
-    {mails.map(mail => <MailPreview mail={mail} key={mail.id} />)}
+    {mails.map(mail => <MailPreview isLongTxtShown={isLongTxtShown} mail={mail} key={mail.id} onDelete ={(mailId)=> {onDelete(mailId)}}/>)}
   </section>
 
 }
