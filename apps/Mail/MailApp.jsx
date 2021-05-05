@@ -1,6 +1,6 @@
 
 import { MailServices } from '../Mail/services/mail-sevice.js'
-// import { utilServices } from 'services/util-service.js'
+// import { utilService } from 'services/util-service.js'
 import { MailList } from './cmps/MailList.jsx'
 import { MailOptions } from './cmps/MailOptions.jsx'
 import { SearchMail } from './cmps/searchMail.jsx'
@@ -9,7 +9,9 @@ import { SearchMail } from './cmps/searchMail.jsx'
 export class MailApp extends React.Component {
     state = {
         mails: null,
-        filterBy:null
+        filterBy:null,
+        isLongTxtShown: false
+        
     }
 
     componentDidMount() {
@@ -23,6 +25,27 @@ export class MailApp extends React.Component {
             });
     }
 
+    onDelete = (mailId)=> {
+        MailServices.deleteMail(mailId);
+        this.loadMail();
+    }
+    onOpenMail = (mailId)=> {
+        MailServices.openMail(mailId);
+        this.loadMail();
+    }
+    showMore = () => {
+        this.setState({ isLongTxtShown: !this.state.isLongTxtShown });
+    }
+    onSendMail=(mail) => {
+        MailServices.sendMail(mail)
+        .then(mails => {this.setState(mails)})
+
+    }
+    onOpenMail = (mail) => {
+        console.log(mail.id);
+        MailServices.show(mail.id)
+        .then(mails => {this.setState(mails)})
+    }
     render() {
         const { mails } = this.state
         if (!mails) return <div>Loading...</div>
@@ -31,8 +54,8 @@ export class MailApp extends React.Component {
             <section>
                 <SearchMail className="search-mails" />
                 <div className="flex">
-                <MailOptions className="options" /> 
-                <MailList  mails={mails} className="mails" />
+                <MailOptions className="options" onSendMail={this.onSendMail} mails={mails} /> 
+                <MailList   mails={mails} isLongTxtShown={isLongTxtShown} className="mails" onOpenMail={(mailId) => this.onOpenMail(mailId)} onDelete={(mailId) => this.onDelete(mailId)} />
                 </div>
             </section>
         )

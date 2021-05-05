@@ -1,21 +1,31 @@
 import { MailServices } from '../Mail/services/mail-sevice.js'
 
 
-export function MailPreview({ mail }) {
+export function MailPreview({ mail, onDelete,isLongTxtShown,onOpenMail}) {
+  function toggleShow(){
+    if (!mail.isShown){
+      // count++;
+      // console.log(count);
+      <img className="envelope-closed" src="apps\Mail\assets\img\closed.jpg"/>
+      return `hidden`
+    }}
+
   return (
     
-      <table className="mail-preview">
-        <tbody>
-        <tr className="mail-preview">
-        <td>{mail.id}.</td>
-        <td className="subject">{mail.subject} : </td>
-        <td>{mail.body}</td>
-        <td>{mail.sentAt}</td>
-        <td> <button onClick={() => {MailServices.deleteMail(mail.id)}}>Delete</button></td>
-        <td><img src="../mail/assets/img/closed.jpg"/></td>
-      </tr>
-      </tbody>
-      </table>
+      <div className="mail-preview" onClick={()=>{
+        onOpenMail(mail);
+      }}  >
+        <span>{mail.id}.</span>
+        <span  className="subject">{mail.subject}</span>
+        <span>{mail.subject}</span>
+        <span className={`body ` + toggleShow()}>{mail.body}</span>
+        <span>{mail.sentAt}</span>
+        <span><button onClick={()=>{
+  
+          onDelete(mail.id);
+        }}>Delete</button></span>
+        <span><img className="envelope" src="apps\Mail\assets\img\open.jpg"/></span>
+      </div>
     
   )
 }

@@ -17,14 +17,10 @@ export function App() {
 
             <main>
                 <Switch>
-                    {/* <Route component={BookDetails} path="/book/:bookId" /> */}
-                    {/* <Route component={BookAdd} path="/add" /> */}
-                    {/* <Route component={BookApp} path="/book" /> */}
                     <Route component={AboutUs} path="/about" />
                     <Route component={KeepApp} path="/keep" />
                     <Route component={MailApp} path="/mail" />
                     <Route component={Home} path="/" />
-
                 </Switch>
             </main>
 
