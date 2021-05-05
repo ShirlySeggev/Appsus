@@ -3,9 +3,7 @@ import { MailServices } from '../Mail/services/mail-sevice.js'
 // import { utilService } from 'services/util-service.js'
 import { MailList } from './cmps/MailList.jsx'
 import { MailOptions } from './cmps/MailOptions.jsx'
-import { MailPreview } from './cmps/MailPreview.jsx'
 import { SearchMail } from './cmps/searchMail.jsx'
-
 
 
 export class MailApp extends React.Component {
@@ -49,7 +47,7 @@ export class MailApp extends React.Component {
         .then(mails => {this.setState(mails)})
     }
     render() {
-        const { mails,isLongTxtShown } = this.state
+        const { mails } = this.state
         if (!mails) return <div>Loading...</div>
         console.log(this.state.mails);
         return (

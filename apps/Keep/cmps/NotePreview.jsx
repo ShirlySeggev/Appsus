@@ -1,6 +1,6 @@
 
-export function NotePreview({ note }) {
-    const { type } = note
+export function NotePreview({ note, onDeleteNote, onUpdateNote, onChangeBackground }) {
+    const { id, type } = note
 
     const DynamicCmp = (note) => {
         switch (type) {
@@ -10,15 +10,19 @@ export function NotePreview({ note }) {
                 return <NoteImg note={note} />
             case 'NoteTodos':
                 return <NoteTodos note={note} />
-
+            case 'NoteVideo':
+                return <NoteVideo note={note} />
             default:
-                return //...some default error view
+                return console.log('no note type');
         }
     }
 
     return (
         <section className="note-preview">
             <DynamicCmp note={note} />
+            <button name={id} onClick={() => { onDeleteNote(id) }}>Delete</button>
+            <button name={id} onClick={() => { onUpdateNote(id) }}>Update</button>
+            {/* <button name={id} onClick={() => { onChangeBackground(id) }}>Background</button> */}
         </section>
     )
 }
@@ -32,6 +36,7 @@ function NoteText({ note }) {
         </div>
     )
 }
+
 function NoteImg({ note }) {
     const { url, title } = note.note.info;
     return (
@@ -50,3 +55,13 @@ function NoteTodos({ note }) {
         </div>
     )
 }
+function NoteVideo({ note }) {
+    const { url, title } = note.note.info;
+    return (
+        <div>
+            <h3>{title}</h3>
+            <iframe className="iframe" width="250" height="250" frameBorder="0" src={url}> </iframe>
+        </div>
+    )
+}
+

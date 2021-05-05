@@ -1,4 +1,4 @@
-//import { MailServices } from '../Mail/services/mail-sevice.js'
+import { MailServices } from '../Mail/services/mail-sevice.js'
 
 
 export function MailPreview({ mail, onDelete,isLongTxtShown,onOpenMail}) {
