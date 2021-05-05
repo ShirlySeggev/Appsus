@@ -1,5 +1,5 @@
 
-import { MailServices } from '../Mail/services/mail-sevice.js'
+import { MailServices } from './services/mail-sevice.js'
 // import { utilService } from 'services/util-service.js'
 import { MailList } from './cmps/MailList.jsx'
 import { MailOptions } from './cmps/MailOptions.jsx'
@@ -55,7 +55,7 @@ export class MailApp extends React.Component {
                 <SearchMail className="search-mails" />
                 <div className="flex">
                 <MailOptions className="options" onSendMail={this.onSendMail} mails={mails} /> 
-                <MailList   mails={mails} isLongTxtShown={isLongTxtShown} className="mails" onOpenMail={(mailId) => this.onOpenMail(mailId)} onDelete={(mailId) => this.onDelete(mailId)} />
+                <MailList   mails={mails} className="mails" onOpenMail={(mailId) => this.onOpenMail(mailId)} onDelete={(mailId) => this.onDelete(mailId)} />
                 </div>
             </section>
         )
