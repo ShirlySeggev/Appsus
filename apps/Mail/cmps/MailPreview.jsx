@@ -1,7 +1,7 @@
 import { MailServices } from '../Mail/services/mail-sevice.js'
 
 
-export function MailPreview({ mail, onDelete,isLongTxtShown,onOpenMail}) {
+export function MailPreview({ mail, onDelete,onOpenMail}) {
   function toggleShow(){
     if (!mail.isShown){
       // count++;
