@@ -4,7 +4,9 @@ export const keepService = {
     query,
     addNote,
     deleteNote,
-    updateNote
+    updateNote,
+    getNoteText,
+    editNote
 
 }
 
@@ -122,7 +124,7 @@ function addNote(noteToAdd) {
             newNote.info.url = embedUrl;
             break;
         default:
-            console.log('note type dont found');
+            console.log('note type not found');
     }
 
     gNotes.push(newNote);
@@ -146,15 +148,62 @@ function deleteNote(noteId) {
     const noteIdx = gNotes.findIndex(note => note.id === noteId);
     gNotes.splice(noteIdx, 1);
     _saveNotesToStorage();
-    console.log(gNotes);
     return Promise.resolve(gNotes);
 }
 
 
 function updateNote(noteId) {
     const note = gNotes.find(note => note.id === noteId);
-    // gNotes.splice(noteIdx, 1);
-    // _saveNotesToStorage();
-    console.log(note);
     return Promise.resolve(note);
+}
+
+function getNoteText(noteId) {
+    const note = gNotes.find(note => note.id === noteId);
+    switch (note.type) {
+        case 'NoteText':
+            return note.info.txt;
+        case 'NoteImg':
+            return note.info.url;
+        case 'NoteTodos':
+            let todos = note.info.todos.map(todo => {
+                return todo.txt
+            })
+            return todos.toString();
+        case 'NoteVideo':
+            return note.info.url;
+        default:
+            return 'note type not found';
+    }
+
+}
+
+function editNote(noteId, noteUpdated) {
+    const note = gNotes.find(note => note.id === noteId);
+    note.info.title = noteUpdated.title;
+    switch (note.type) {
+        case 'NoteText':
+            note.info.txt = noteUpdated.txt;
+            break;
+        case 'NoteImg':
+            note.info.url = noteUpdated.txt;
+            break;
+        case 'NoteTodos':
+            let todos = (noteUpdated.txt).split(',');
+            note.info.todos = todos.map(todo => {
+                let todoObj = {
+                    txt: todo,
+                    updateAt: Date.now()
+                }
+                return todoObj;
+            });
+            break;
+        case 'NoteVideo':
+            const embedUrl = getEmbedUrl(noteUpdated.txt);
+            note.info.url = embedUrl;
+            break;
+        default:
+            console.log('note type not found');
+    }
+
+    _saveNotesToStorage();
 }

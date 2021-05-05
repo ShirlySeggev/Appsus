@@ -1,11 +1,9 @@
 import { MailServices } from '../Mail/services/mail-sevice.js'
-import { utilService } from '../../../util-service'
-import { MailOptions } from './cmps/MailOptions.jsx'
 
 
 export class ComposeMail extends React.Component {
     state = {
-        id:utilService.makeId(3),
+        id,
         to: '',
         subject: '',
         body: '',
@@ -14,46 +12,42 @@ export class ComposeMail extends React.Component {
     }
 
     componentDidMount() {
-    }
-    handleChange = ({ target }) => {
-        const name = target.name
-        const value = target.type === 'select-one' ? +target.value : target.value;
-        this.setState({ ...this.state, [name]: value }, () => {
-            // console.log(this.state)
-        })
-        
-        // setState(this.state)
-    }
-    onSendMail=(ev) => {
-        ev.preventDefault();
-        console.log(this.state.id,this.state);
-        console.log( this.props);
-        // MailServices.gMails.push(this.state)
 
     }
-        // MailServices.sendMail(this.state.id,this.state)
-        //     .then((mail) => {
-        //         console.log(mail);
-        //         this.setState(mail)
+    onComposeMail = (ev) => {
+        ev.preventDefault();
+        MailServices.composeMail(this.props.mail.id, this.state)
+            .then((mail) => {
+                this.props.onComposeMail(mail)
                 // this.props.history.push(`/book`)
-            // })
-    
-    
+            })
+    }
+    handleChange = ({ target }) => {
+        const field = target.name
+        const value = target.type === 'number' ? +target.value : target.value
+        this.setState(prevState => ({
+            car: {
+                ...prevState.car,
+                [field]: value
+            }
+        }))
+    }
     render() {
         const {id,to,subject,body,isRead,sentAt}= this.state
         return (
             <div className="compose-mail">
                 <header>new massage</header>
-                <form className="review-form" onSubmit={this.onSendMail}>
-                    <input className="to" type="text" id="to" name="to"onChange={this.handleChange} value={this.state.to} placeholder="to" />
-                    <input className="subject" type="text" id="subject" name="subject"onChange={this.handleChange} value={this.state.subject} placeholder="Subject" />
-                    <input className="body" type="text" id="body" name="body"onChange={this.handleChange} value={this.state.body} placeholder="body" />
-                    <button type="submit" >Send</button>
-                    
+                <form>
+                    <input className="to" type="text" id="to" name="to" value={this.state.to} placeholder="to" />
+                    <input className="subject" type="text" id="subject" name="subject" value={this.state.subject} placeholder="Subject" />
+                    <input className="body" type="text" id="body" name="body" value={this.state.body} placeholder="body" />
+                    <input className="id" type="number" id="id" name="id" value={this.state.id} placeholder="Subject" />
+                    <button type="submit">Send</button>
+                    <button type="submit">delete</button>
                 </form>
             </div>
         )
     }
-
 }
+
     

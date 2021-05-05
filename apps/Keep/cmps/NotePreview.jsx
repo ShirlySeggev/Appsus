@@ -1,5 +1,5 @@
 
-export function NotePreview({ note , onDeleteNote, onUpdateNote}) {
+export function NotePreview({ note, onDeleteNote, onUpdateNote, onChangeBackground }) {
     const { id, type } = note
 
     const DynamicCmp = (note) => {
@@ -13,15 +13,16 @@ export function NotePreview({ note , onDeleteNote, onUpdateNote}) {
             case 'NoteVideo':
                 return <NoteVideo note={note} />
             default:
-                return //...some default error view
+                return console.log('no note type');
         }
     }
 
     return (
         <section className="note-preview">
             <DynamicCmp note={note} />
-            <button name={id} onClick={()=>{onDeleteNote(id)}}>Delete</button>
-            <button name={id} onClick={()=>{onUpdateNote(id)}}>Update</button>
+            <button name={id} onClick={() => { onDeleteNote(id) }}>Delete</button>
+            <button name={id} onClick={() => { onUpdateNote(id) }}>Update</button>
+            {/* <button name={id} onClick={() => { onChangeBackground(id) }}>Background</button> */}
         </section>
     )
 }
