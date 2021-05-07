@@ -9,11 +9,11 @@ function _AppHeader(props) {
             <UserMsg />
             <h1>Appsus!</h1>
             <ul className="clean-list">
-                <li><NavLink exact to="/">Home</NavLink></li>
-                <li><NavLink to="/about">About</NavLink></li>
-                <li><button onClick={() => {
+                <li><NavLink exact to="/"><i className="fa fa-home header-btn"></i></NavLink></li>
+                <li><NavLink to="/about"><i className="fa fa-info-circle header-btn"></i></NavLink></li>
+                <li onClick={() => {
                     props.history.goBack()
-                }}>Back</button></li>
+                }}><i className="fa fa-undo header-btn"></i></li>
             </ul>
         </nav>
 

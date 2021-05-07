@@ -27,7 +27,7 @@ export class NoteSearch extends React.Component {
             <div className="noteSearch-container">
                 <form className="search-form" onSubmit={this.onSearchNote}>
                     <input className="search-input" type="text" id="search-input" name="search-input" value={titleToSearch} onChange={this.handleChange} placeholder="Search by title's note" />
-                    <button type="submit">Search</button>
+                    <button className="btn-search" type="submit"><i className="fa fa-search fa-keep"></i></button>
                 </form>
 
             </div>

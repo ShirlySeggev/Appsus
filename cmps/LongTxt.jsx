@@ -1,6 +1,6 @@
 export function LongTxt({ description, isLongTxtShown, showMore }) {
 
-    if (description.length > 100) {
+    if (description.length > 50) {
         description = isLongTxtShown ? description : description.substring(0, 100) + '...';
     }
 

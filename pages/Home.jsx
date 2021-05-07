@@ -2,10 +2,23 @@ const { Link } = ReactRouterDOM
 
 export function Home() {
     return <section className="home-container">
-        <h1>Welcome!!!</h1>
-        <h3> <Link to="/keep">MissKeep</Link></h3>
-        <h3> <Link to="/mail">MissMail</Link></h3>
-        <h3><Link to="/book">MissBooks</Link></h3>
-        {/* <img src="/assets/img/hello.gif" /> */}
+        <div className="btns-container">
+            <div className="home-keep-container">
+                <button className="home-btn"><Link to="/keep"><i className="fa fa-sticky-note-o fa-home"></i></Link></button>
+                <h1 className="home-h1">Miss Keep</h1>
+            </div>
+            <div className="home-mail-container">
+                <button className="home-btn"><Link to="/mail"><i className="fa fa-envelope fa-home"></i></Link></button>
+                <h1 className="home-h1">Mister Email</h1>
+            </div>
+            <div className="home-book-container">
+                <button className="home-btn"><Link to="/book"><i className="fa fa-book fa-home"></i></Link></button>
+                <h1 className="home-h1">Miss Book</h1>
+            </div>
+
+        </div>
+        <img className="home-img" src="./assets/img/welcome.gif" />
+
     </section>
 }
+

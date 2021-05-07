@@ -1,9 +1,13 @@
+@import './Home.css';
 @import './UserMsg.css';
 @import './NavBar.css';
 @import './filter.css';
 @import './FooterApp.css';
-@import '../../apps/Keep/assets/css/KeepSearch.css';
+@import './LongTxt.css';
+@import './AboutUs.css';
+@import '../../apps/Keep/assets/css/keepApp-main.css';
 @import '../../apps/Mail/assets/css/main.css';
+@import '../../apps/Books/assets/css/bookApp-main.css';
 @font-face {
     font-family: lato-bold;
     src: url(../fonts/Lato-Bold.ttf);
@@ -20,7 +24,8 @@
 }
 
 body {
-    background-color: rgb(226, 234, 236);
+    /* background-color: rgb(226, 234, 236); */
+    background-color: rgb(255, 255, 255);
     font-family: lato-light;
     margin: 0;
     font-size: 16px;
@@ -39,19 +44,23 @@ p {
     margin: 0 0 1rem;
 }
 
-button {
-    cursor: pointer;
-    background-color: #10BBD5;
-    color: whitesmoke;
-    border-radius: 4px;
-    padding: 10px 24px;
-    border: none;
-    text-align: center;
+a {
     text-decoration: none;
-    margin: 5px;
+}
+
+button {
+    /* cursor: pointer; */
+    /* background-color: #10BBD5; */
+    /* color: whitesmoke; */
+    /* border-radius: 4px; */
+    /* padding: 10px 24px; */
+    /* border: none; */
+    /* text-align: center; */
+    /* text-decoration: none; */
+    /* margin: 5px; */
 }
 
 button:hover {
-    background-color: #39cfe6;
-    transition: .3s;
+    /* background-color: #39cfe6; */
+    /* transition: .3s; */
 }

@@ -1,0 +1,48 @@
+@import './book-cmps/book-add.css';
+@import './book-cmps/book-filter.css';
+@import './book-cmps/book-list.css';
+@import './book-cmps/book-details.css';
+@import './book-cmps/book-review.css';
+.bookApp-header {
+    background-color: #73777a;
+}
+
+.book-btn {
+    cursor: pointer;
+    background-color: #10BBD5;
+    color: whitesmoke;
+    border-radius: 4px;
+    padding: 10px 24px;
+    border: none;
+    text-align: center;
+    text-decoration: none;
+    margin: 5px;
+}
+
+.book-btn:hover {
+    background-color: #39cfe6;
+    transition: .3s;
+}
+
+.x-btn {
+    cursor: pointer;
+    background-color: transparent;
+    border-radius: 4px;
+    border: none;
+    text-align: center;
+    text-decoration: none;
+    margin: 5px;
+    font-size: 10px;
+    color: #10BBD5;
+    font-family: lato-bold;
+}
+
+.book-input {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    background-color: #f1f1f1;
+    width: 100%;
+    margin-bottom: 5px;
+    margin-top: 5px;
+}

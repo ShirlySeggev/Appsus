@@ -1,0 +1,36 @@
+@import './keep-cmps/notes-add-search.css';
+@import './keep-cmps/note-preview.css';
+@import './keep-cmps/note-updates.css';
+
+/*BUTTONS */
+
+#noteBcg,
+#noteColor {
+    width: 30px;
+    height: 30px;
+}
+
+.btn,
+.btn-search,
+.note-btn {
+    background: transparent;
+    border: none;
+    padding: 10px 16px;
+    font-size: 24px;
+}
+
+.btn-search {
+    font-size: 15px;
+}
+
+.fa-keep {
+    color: #757575;
+}
+
+.fa-keep:hover {
+    color: #212121;
+}
+
+.fa-keep:active {
+    color: #212121;
+}

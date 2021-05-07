@@ -29,3 +29,7 @@ li:not(:last-of-type) {
     font-weight: bold;
     color: whitesmoke;
 }
+
+.header-btn {
+    color: whitesmoke;
+}
