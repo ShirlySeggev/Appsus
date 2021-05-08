@@ -36,7 +36,7 @@ export function NotePreview({ note, onDeleteNote, onUpdateNote, onChangeBackgrou
                 <button className="note-btn" onClick={() => { onDeleteNote(id) }}><i className="fa fa-trash fa-keep"></i></button>
                 <button className="note-btn" onClick={() => { onUpdateNote(id) }}><i className="fa fa-pencil-square-o fa-keep"></i></button>
                 <button className="note-btn" onClick={() => { onPin(id) }}><i className="fa fa-thumb-tack fa-keep"></i></button>
-                <button className="note-btn" onClick={() => { onSendToMail(id) }}><i className="fa fa-share-square-o fa-keep"></i></button>
+                {/* <button className="note-btn" onClick={() => { onSendToMail(id) }}><i className="fa fa-share-square-o fa-keep"></i></button> */}
                 <input type="color" id="noteBcg" className="note-btn" onChange={(ev) => { onChangeBackground(id, ev.target.value) }} /><i className="fa fa-adjust fa-keep"></i>
                 <input type="color" id="noteColor" className="note-btn" onChange={(ev) => { onChangeColor(id, ev.target.value) }} /><i className="fa fa-paint-brush fa-keep"></i>
             </div>

@@ -84,7 +84,7 @@ export class BookDetails extends React.Component {
                         <h4> {book.subtitle}</h4>
                         <h5 className={`${(book.listPrice.amount > 150) ? 'red-price' : ''} ${(book.listPrice.amount) < 20 ? 'green-price' : ''}`}>{book.listPrice.amount}     {bookService.getCurrencyIcon(book.listPrice.currencyCode)}
                         </h5>
-                        {book.listPrice.isOnSale && <img className="sale-img" src="../assets/img/sale.png" alt="" />}
+                        {book.listPrice.isOnSale && <img className="sale-img" src="./assets/img/sale.png" alt="" />}
                         <p>{book.categories.join(' | ')}</p>
                         <p>{this.pageCountCategory} | {this.publishedDateCategory}</p>
                         <p>{book.pageCount} Pages | Lenguage: {book.language} | {book.publishedDate}</p>

@@ -6,7 +6,7 @@ export function AboutUs() {
         <section className="about-us">
             <h2>About us:</h2>
             <div className="info-container">
-                <img className="my-image" src="./../assets/img/shirly.jpg" alt="" />
+                <img className="my-image" src="./assets/img/shirly.jpg" alt="" />
                 <div className="details-container">
                     <h3 className="my-name">Shirly Seggev</h3>
                     <h4 className="my-name">FullStack Developer</h4>
@@ -19,7 +19,7 @@ export function AboutUs() {
             </div>
 
             <div className="info-container">
-                <img className="my-image" src="../assets/img/linoy.jpg" alt="" />
+                <img className="my-image" src="./assets/img/linoy.jpg" alt="" />
                 <div className="details-container">
                     <h3 className="my-name">Linoy Fakiro</h3>
                     <h4 className="my-name">FullStack Developer</h4>
