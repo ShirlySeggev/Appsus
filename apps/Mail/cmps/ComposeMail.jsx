@@ -6,7 +6,7 @@ import { MailOptions } from './cmps/MailOptions.jsx'
 
 export class ComposeMail extends React.Component {
     state = {
-        id,
+        id:utilService.makeId(),
         to: '',
         subject: '',
         body: '',
@@ -21,7 +21,6 @@ export class ComposeMail extends React.Component {
         const name = target.name
         const value = target.type === 'select-one' ? +target.value : target.value;
         this.setState({ ...this.state, [name]: value }, () => {
-            // console.log(this.state)
         })
     
     }
@@ -29,23 +28,23 @@ export class ComposeMail extends React.Component {
         ev.preventDefault();
         console.log(this.state);
         this.props.onSendMail(this.state)
-        // debugger
-        // storageService.saveToStorage(mails,this.state)
-        this.state()
+        this.props.openForm()
     }
     
         
     render() {
         const {id,to,subject,body,isRead,sentAt}= this.state
         return (
+            <div className="compose-container">
             <div className="compose-mail">
-                <header>new massage</header>
+                <header className="header-compose">Compose Mail</header>
                 <form className="review-form" onSubmit={this.onSumbit}>
                     <input className="to" type="text" id="to" name="to"onChange={this.handleChange} value={this.state.to} placeholder="to" />
                     <input className="subject" type="text" id="subject" name="subject"onChange={this.handleChange} value={this.state.subject} placeholder="Subject" />
                     <input className="body" type="text" id="body" name="body"onChange={this.handleChange} value={this.state.body} placeholder="body" />
                     <button type="submit" >Send</button>
                 </form>
+            </div>
             </div>
         )
     }

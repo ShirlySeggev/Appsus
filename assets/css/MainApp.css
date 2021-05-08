@@ -3,7 +3,7 @@
 @import './filter.css';
 @import './FooterApp.css';
 @import '../../apps/Keep/assets/css/KeepSearch.css';
-@import '../../apps/Mail/assets/css/main.css';
+@import '../../apps/Mail/assets/css/Mail.css';
 @font-face {
     font-family: lato-bold;
     src: url(../fonts/Lato-Bold.ttf);

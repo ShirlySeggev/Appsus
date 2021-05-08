@@ -3,35 +3,35 @@ import { MailApp } from './MailApp.jsx'
 
 
 const { Link } = ReactRouterDOM;
-// const Modal =window.ReactBootstrap.Modal; 
 export class MailOptions extends React.Component {
-  state={
-    isShown:false
+  state = {
+    isShown: false,
+    isComposeOpen: false,
+    isStared: false,
+    isRead: false,
+    
   }
-
   componentDidMount() {
-    // console.log( MailApp.props.mails);
+    this.setState({ isComposeOpen: false })
   }
-  handleClose=() => {
-    this.setState({isShown:false})
+  openForm = () => {
+    this.setState({ isComposeOpen: !this.state.isComposeOpen }, () => { console.log(this.state.isComposeOpen); })
   }
-
-  render(){
+  render() {
+  
     return (
       <h1 className="mail-list">
-         <button className="compose" onClick={() =>{this.setState({isShown:true}) }}> Compose +</button>
-         <button className="inbox" >Inbox</button>
-         <button className="Starred">Starred</button>
-         <button className="Sent" >Sent</button>
-         <button className="Drafts">Drafts</button>
-         {/* <Modal show={this.state.isShown} onHide={this.handleClose} >
-        <Modal.Header closeButton>
-          <Modal.Title>Modal heading</Modal.Title>
-        </Modal.Header>
-        <Modal.Body> <ComposeMail  onSendMail={this.props.onSendMail} /> </Modal.Body>
-      </Modal> */}
+        <button className="compose" onClick={this.openForm}> Compose +</button>
+        <button className="inbox" onClick={this.props.OnInbox} >Inbox</button>
+        <button onClick={this.props.OnSentMails} className="Sent" >Sent</button>
+        <div className="num">
+      {this.props.isInbox && <h6 className="li">Un-Read Mails:</h6>}
+      {this.props.isInbox && <span className="un-read-mails"> {this.props.countsRead}</span>}
+        </div>
+
+        {this.state.isComposeOpen && <section className="modal-form"><ComposeMail openForm={this.openForm} onSendMail={this.props.onSendMail} /></section>}
       </h1>
-      
+
     )
-         }
   }
+}

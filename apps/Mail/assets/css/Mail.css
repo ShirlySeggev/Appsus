@@ -1,0 +1,278 @@
+/* *************************************************************** */
+
+td {
+    /* margin-right: 10px; */
+    margin-left: 20px;
+    padding-left: 5px;
+    flex-direction: column;
+    /* justify-content: space-between; */
+}
+
+.envelope-sent {
+    width: 40px;
+}
+
+.span-img {
+    width: 40px;
+}
+
+img.read-icon {
+    width: 50px;
+}
+
+img.envelope {
+    display: flex;
+    /* position: relative; */
+    right: 40px
+}
+
+.num {
+    display: flex;
+    /* flex-direction: column; */
+    text-align: center
+}
+
+.sent-mail-preview {
+    margin: 5px;
+    display: flex;
+}
+
+.mail-preview {
+    margin: 5px;
+    display: flex;
+}
+
+span.body {
+    margin-bottom: 8px;
+}
+
+button.compose {
+    box-shadow: 0 3px 4px 3px rgb(67, 161, 141)
+}
+
+button.inbox {
+    box-shadow: 0 3px 4px 3px rgb(67, 161, 141)
+}
+
+button.Sent {
+    box-shadow: 0 3px 4px 3px rgb(67, 161, 141)
+}
+
+button.Starred {
+    box-shadow: 0 3px 4px 3px rgb(67, 161, 141)
+}
+
+span.subject {
+    font-weight: bold;
+    font-size: 18px;
+}
+
+span.un-read-mails {
+    text-align: center;
+    display: flex;
+    position: relative;
+    top: 45px;
+    left: 10px;
+}
+
+.envelope.hidden {
+    display: none;
+}
+
+.mail-preview:hover {
+    cursor: pointer;
+}
+
+.star {
+    color: yellow;
+    /* background-color: yellow; */
+}
+
+.star.hidden {
+    display: none;
+    /* background-color: yellow; */
+}
+
+div.num {
+    border-top: 1px solid rgb(179, 175, 175);
+    box-shadow: 0 8px 6px -6px black;
+    margin: 6px;
+}
+
+form.search-form {
+    box-shadow: 0 8px 6px -6px rgb(105, 101, 101);
+}
+
+div.mail-preview {
+    box-shadow: 0 2px 3px 1px rgb(144, 142, 142);
+    border: 0.5px solid lightgray;
+    display: flex;
+    text-align: center;
+    /* flex-direction: column; */
+    justify-content: space-between;
+}
+
+div.sent-mail-preview {
+    box-shadow: 0 2px 3px 1px rgb(144, 142, 142);
+    border: 0.5px solid lightgray;
+    display: flex;
+    text-align: center;
+    /* flex-direction: column; */
+    justify-content: space-between;
+}
+
+div.compose-mail {
+    background-color: black
+}
+
+.checked {
+    color: orange;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+}
+
+.mail-id {
+    margin-left: 0px
+}
+
+span.fa.fa-star {
+    width: 50px;
+    margin-right: 50px;
+    margin-top: 20px
+}
+
+span {
+    margin-left: 80px;
+    width: 100px;
+}
+
+.modal-form {
+    background-color: #dee2e6;
+    position: absolute;
+}
+
+.compose-mail {
+    flex-direction: column;
+    display: flex;
+    position: fixed;
+    left: 150px;
+    top: 300px;
+    width: 860px;
+    border: 1px solid #a8aaac;
+}
+
+.compose-mail-none {
+    display: none;
+}
+
+form.review-form {
+    background-color: #dee2e6;
+}
+
+header.header-compose {
+    background-color: #dee2e6;
+    text-align: center;
+}
+
+
+/* .review-form {
+    background-color: #dee2e6;
+    position: absolute;
+} */
+
+.mail-list {
+    /* border: 0.5px solid rgb(7, 7, 7); */
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+}
+
+h1.mail-list {
+    flex-grow: 1;
+    margin-top: 10px;
+}
+
+.subject {
+    font-weight: bold;
+}
+
+.flex {
+    display: flex;
+}
+
+.body.hidden {
+    display: none
+}
+
+.fa.fa-star.checked {
+    color: yellow
+}
+
+.fa-star {
+    color: white;
+    text-align: center;
+}
+
+
+/* .fa-star:hover {
+    color: white;
+    cursor: pointer;
+} */
+
+section.mail-list {
+    margin-top: 10px;
+    flex-grow: 7;
+    display: flex;
+    /* flex-direction: column; */
+    /* justify-content: space-between; */
+}
+
+section.sent-mail-list {
+    margin: 10px;
+    flex-grow: 7;
+    display: flex;
+    flex-direction: column;
+    /* justify-content: space-around; */
+}
+
+.star {
+    color: yellow
+}
+
+.subject-btn {
+    cursor: pointer;
+    background-color: rgb(226, 234, 236);
+    color: rgb(15, 14, 14);
+    text-decoration: none;
+}
+
+.envelope {
+    width: 40px;
+    height: 40px;
+    ;
+}
+
+.search-input-btn,
+.compose,
+.inbox,
+.Starred,
+.Sent,
+.Delete {
+    cursor: pointer;
+    color: whitesmoke;
+    border-radius: 4px;
+    padding: 10px 24px;
+    border: none;
+    text-align: center;
+    text-decoration: none;
+}
+
+.search-input-btn,
+.compose,
+.inbox,
+.Starred,
+.Sent,
+.Delete :hover {
+    transition: .3s
+}
