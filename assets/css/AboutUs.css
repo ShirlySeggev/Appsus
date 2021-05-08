@@ -1,0 +1,37 @@
+.my-image {
+    height: 160px;
+    object-fit: cover;
+    border-radius: 3px;
+    margin-right: 30px;
+}
+
+.social-btn {
+    padding: 8px 10px;
+    font-size: 24px;
+}
+
+.fa-us {
+    color: #4C394E;
+}
+
+.fa-us:hover {
+    color: #10BBD5;
+}
+
+.info-container {
+    display: flex;
+    margin-left: 50px;
+    margin-top: 50px;
+}
+
+.details-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.about-us h2 {
+    text-align: center;
+    margin-top: 50px;
+    text-decoration: underline;
+}

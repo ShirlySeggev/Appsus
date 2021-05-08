@@ -1,9 +1,8 @@
 import { NoteSearch } from './cmps/NoteSearch.jsx';
 import { NotesAdd } from './cmps/NotesAdd.jsx';
 import { NotesList } from './cmps/NotesList.jsx';
-import { NotePreview } from './cmps/NotePreview.jsx';
 import { NoteUpdate } from './cmps/NoteUpdate.jsx';
-
+import { eventBusService } from '../../../services/event-bus-service.js';
 import { keepService } from './services/keep-service.js';
 
 
@@ -12,7 +11,8 @@ export class KeepApp extends React.Component {
         notes: null,
         titleToSearch: null,
         isOnUpdate: false,
-        noteToUpdate: null
+        noteToUpdate: null,
+        noteToMail: null
     }
 
     componentDidMount() {
@@ -34,7 +34,9 @@ export class KeepApp extends React.Component {
         keepService.deleteNote(noteId)
             .then((notes) => {
                 this.setState({ notes })
+                eventBusService.emit('show-user-msg', { userMsg: <p> The note was successfully deleted! </p>, type: 'success' })
             })
+            .catch(eventBusService.emit('show-user-msg', { userMsg: <p>Something went wrong..try again</p>, type: 'error' }))
         this.onCloseModal();
     }
 
@@ -49,11 +51,41 @@ export class KeepApp extends React.Component {
         this.setState({ isOnUpdate: false, noteToUpdate: null })
     }
 
+    onChangeBackground = (noteId, bcgColor) => {
+        keepService.changeBackground(noteId, bcgColor)
+            .then((notes) => {
+                this.setState({ notes })
+            })
+    }
 
+    onChangeColor = (noteId, color) => {
+        keepService.changeColor(noteId, color)
+            .then((notes) => {
+                this.setState({ notes })
+            })
+    }
+
+    onPin = (noteId) => {
+        keepService.pinNote(noteId)
+            .then((notes) => {
+                this.setState({ notes })
+            })
+    }
+
+    onSendToMail = (noteId) => {
+        keepService.getNoteToMail(noteId)
+            .then((note) => {
+                this.setState({ noteToMail: note }, () => {
+                    const string = `/index.html/mail#/title=${this.state.noteToMail.title}&txt=${this.state.noteToMail.txt}`;
+                    console.log(string);
+                    // window.location.href = string;
+                })
+            })
+    }
 
     render() {
         const { notes, isOnUpdate } = this.state;
-        if (!notes) return <div>Loading...</div>
+        if (!notes) return <img src="../../../assets/img/loading.gif" />
         return (
             <section className="keepApp-container">
 
@@ -63,14 +95,12 @@ export class KeepApp extends React.Component {
                 </header>
 
                 <main className="keepApp-notes-container">
-                    <h1>Pinned notes:</h1>
-                    <h1>Notes to display:</h1>
-                    <NotesList notes={notes} onDeleteNote={this.onDeleteNote} onUpdateNote={this.onUpdateNote} />
+                    <NotesList notes={notes} onDeleteNote={this.onDeleteNote} onUpdateNote={this.onUpdateNote} onChangeBackground={this.onChangeBackground} onChangeColor={this.onChangeColor} onPin={this.onPin} onSendToMail={this.onSendToMail} />
                 </main>
 
                 {isOnUpdate && <React.Fragment>
                     <div className="keepApp-modal-container"></div>
-                    <div className="keepApp-update-modal">
+                    <div className="keepApp-update-modal" style={{ backgroundColor: `${this.state.noteToUpdate.style.backgroundColor}` }}>
                         <NoteUpdate note={this.state.noteToUpdate} onCloseModal={this.onCloseModal} onDeleteNote={this.onDeleteNote} />
                     </div>
                 </React.Fragment>

@@ -1,12 +1,11 @@
 .user-msg {
     position: fixed;
-    /* right: 50%; */
-    bottom: 50%;
+    bottom: 0;
     background-color: honeydew;
     color: #333;
     padding: 10px;
     z-index: 1;
-    border-radius: 4px;
+    border-radius: 5px;
     background-color: #E2EAEC;
 }
 

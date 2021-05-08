@@ -42,7 +42,7 @@ export class ComposeMail extends React.Component {
                     <input className="to" type="text" id="to" name="to"onChange={this.handleChange} value={this.state.to} placeholder="to" />
                     <input className="subject" type="text" id="subject" name="subject"onChange={this.handleChange} value={this.state.subject} placeholder="Subject" />
                     <input className="body" type="text" id="body" name="body"onChange={this.handleChange} value={this.state.body} placeholder="body" />
-                    <button type="submit" >Send</button>
+                    <button type="submit" className="send-sumbit" >Send</button>
                 </form>
             </div>
             </div>

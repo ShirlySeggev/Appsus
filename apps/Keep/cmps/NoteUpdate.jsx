@@ -1,5 +1,6 @@
 import { keepService } from './services/keep-service.js';
-
+import { eventBusService } from '../../../services/event-bus-service.js';
+const { Link } = ReactRouterDOM;
 
 export class NoteUpdate extends React.Component {
     state = {
@@ -22,7 +23,9 @@ export class NoteUpdate extends React.Component {
     onEditNote = (ev) => {
         ev.preventDefault();
         const { id } = this.props.note;
-        keepService.editNote(id, this.state);
+        keepService.editNote(id, this.state)
+            .then(eventBusService.emit('show-user-msg', { userMsg: <p> The note was successfully updated! </p>, type: 'success' }))
+        // .catch(eventBusService.emit('show-user-msg', { userMsg: <p>Something went wrong..try again</p>, type: 'error' }))
         this.props.onCloseModal();
     }
 
@@ -31,20 +34,19 @@ export class NoteUpdate extends React.Component {
     render() {
         const { title, txt } = this.state;
         const { id } = this.props.note;
+        const { color } = this.props.note.style;
         return (
-
-            <section className="note-update">
-                <form className="note-update-form" onSubmit={this.onEditNote}>
-                    <input type="text" id="titleToCahnge" name="title" value={title} onChange={this.handleChange} />
-                    <textarea id="txtToChange" name="txt" value={txt} onChange={this.handleChange} />
-                    <div class="updates-btns">
-                        <button onClick={this.props.onCloseModal}>Cancel</button>
-                        <button onClick={() => { this.props.onDeleteNote(id) }}>Delete</button>
-                        <button type="submit">Save</button>
-                    </div>
-                </form>
-            </section >
-
+                <section className="note-update">
+                    <form className="note-update-form" onSubmit={this.onEditNote}>
+                        <input type="text" id="titleToCahnge" name="title" value={title} onChange={this.handleChange} style={{ color: `${color}` }} />
+                        <textarea id="txtToChange" name="txt" value={txt} onChange={this.handleChange} style={{ color: `${color}` }} />
+                        <div className="updates-btns">
+                            <button className="btn" onClick={this.props.onCloseModal}><i className="fa fa-undo fa-keep"></i></button>
+                            <button className="btn" onClick={() => { this.props.onDeleteNote(id) }}><i className="fa fa-trash fa-keep"></i></button>
+                            <button className="btn" type="submit"><i className="fa fa-floppy-o fa-keep"></i></button>
+                        </div>
+                    </form>
+                </section >
         )
     }
 }

@@ -1,4 +1,5 @@
 import { storageService } from '../../../services/storage-service.js';
+import { utilService } from '../../../services/util-service.js';
 
 export const keepService = {
     query,
@@ -6,8 +7,12 @@ export const keepService = {
     deleteNote,
     updateNote,
     getNoteText,
-    editNote
-
+    editNote,
+    changeBackground,
+    changeColor,
+    pinNote,
+    markTodo,
+    getNoteToMail
 }
 
 const KEY = 'notes';
@@ -23,12 +28,12 @@ function _createNotes() {
                 type: 'NoteText',
                 isPinned: true,
                 info: {
-                    title: 'Note 1',
+                    title: 'Don\'t forget!!!',
                     txt: 'Fullstack Me Baby!'
                 },
                 style: {
-                    backgroundColor: '#00d',
-                    color: 'black',
+                    backgroundColor: '#eca1a6',
+                    color: '#034f84',
                 },
             },
             {
@@ -36,26 +41,29 @@ function _createNotes() {
                 type: 'NoteImg',
                 isPinned: false,
                 info: {
-                    title: 'Me playing Mi',
+                    title: 'Passport photo',
                     url: `https://robohash.org/aa`
                 },
                 style: {
-                    backgroundColor: '#00d'
+                    backgroundColor: '#b1cbbb',
+                    color: '#bc5a45',
                 }
             },
             {
                 id: 'ccc',
                 type: 'NoteTodos',
-                isPinned: false,
+                isPinned: true,
                 info: {
-                    title: 'How was it:',
+                    title: 'Shopping list:',
                     todos: [
-                        { txt: 'Do that', doneAt: null },
-                        { txt: 'Do this', doneAt: 187111111 }
+                        { id: '111', txt: 'Milk', isMarked: false, doneAt: Date.now() },
+                        { id: '222', txt: 'Tomatoes', isMarked: true, doneAt: Date.now() },
+                        { id: '333', txt: 'Cereals', isMarked: true, doneAt: Date.now() }
                     ]
                 },
                 style: {
-                    backgroundColor: '#00d'
+                    backgroundColor: '#92a8d1',
+                    color: 'black',
                 }
             },
             {
@@ -63,11 +71,25 @@ function _createNotes() {
                 type: 'NoteVideo',
                 isPinned: false,
                 info: {
-                    title: 'relax video',
+                    title: 'Relax video',
                     url: `https://www.youtube.com/embed/5qap5aO4i9A`
                 },
                 style: {
-                    backgroundColor: '#00d'
+                    backgroundColor: '#f7786b',
+                    color: '#ffef96'
+                }
+            },
+            {
+                id: 'eee',
+                type: 'NoteAudio',
+                isPinned: false,
+                info: {
+                    title: 'My favorite song',
+                    url: `https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3`
+                },
+                style: {
+                    backgroundColor: '#ADD8E6',
+                    color: '#800000'
                 }
             }
         ];
@@ -97,8 +119,8 @@ function addNote(noteToAdd) {
             title: noteToAdd.title,
         },
         style: {
-            backgroundColor: '#00d',
-            color: 'black',
+            backgroundColor: '#fefbd8',
+            color: '#618685',
         }
     }
     switch (type) {
@@ -110,10 +132,11 @@ function addNote(noteToAdd) {
             break;
         case 'NoteTodos':
             let todos = (noteToAdd.txt).split(',');
-            console.log(todos);
             newNote.info.todos = todos.map(todo => {
                 let todoObj = {
+                    id: utilService.makeId(),
                     txt: todo,
+                    isMarked: false,
                     doneAt: Date.now()
                 }
                 return todoObj;
@@ -122,6 +145,9 @@ function addNote(noteToAdd) {
         case 'NoteVideo':
             const embedUrl = getEmbedUrl(noteToAdd.txt);
             newNote.info.url = embedUrl;
+            break;
+        case 'NoteAudio':
+            newNote.info.url = noteToAdd.txt;
             break;
         default:
             console.log('note type not found');
@@ -151,7 +177,6 @@ function deleteNote(noteId) {
     return Promise.resolve(gNotes);
 }
 
-
 function updateNote(noteId) {
     const note = gNotes.find(note => note.id === noteId);
     return Promise.resolve(note);
@@ -170,6 +195,8 @@ function getNoteText(noteId) {
             })
             return todos.toString();
         case 'NoteVideo':
+            return note.info.url;
+        case 'NoteAudio':
             return note.info.url;
         default:
             return 'note type not found';
@@ -191,7 +218,9 @@ function editNote(noteId, noteUpdated) {
             let todos = (noteUpdated.txt).split(',');
             note.info.todos = todos.map(todo => {
                 let todoObj = {
+                    id: utilService.makeId(),
                     txt: todo,
+                    isMarked: false,
                     updateAt: Date.now()
                 }
                 return todoObj;
@@ -201,9 +230,52 @@ function editNote(noteId, noteUpdated) {
             const embedUrl = getEmbedUrl(noteUpdated.txt);
             note.info.url = embedUrl;
             break;
+        case 'NoteAudio':
+            note.info.url = noteUpdated.txt;
+            break;
         default:
             console.log('note type not found');
     }
 
     _saveNotesToStorage();
+    return Promise.resolve();
+}
+
+function changeBackground(noteId, bcgColor) {
+    const note = gNotes.find(note => note.id === noteId);
+    note.style.backgroundColor = bcgColor;
+    _saveNotesToStorage();
+    return Promise.resolve(gNotes);
+}
+
+function changeColor(noteId, color) {
+    const note = gNotes.find(note => note.id === noteId);
+    note.style.color = color;
+    _saveNotesToStorage();
+    return Promise.resolve(gNotes);
+}
+
+function pinNote(noteId) {
+    const note = gNotes.find(note => note.id === noteId);
+    note.isPinned = !note.isPinned;
+    _saveNotesToStorage();
+    return Promise.resolve(gNotes);
+}
+
+function markTodo(noteId, todoId) {
+    const note = gNotes.find(note => note.id === noteId);
+    const todo = note.info.todos.find(todo => todo.id === todoId);
+    todo.isMarked = !todo.isMarked;
+    _saveNotesToStorage();
+}
+
+function getNoteToMail(noteId) {
+    const note = gNotes.find(note => note.id === noteId);
+    const noteToMail = {
+        id: noteId,
+        type: note.type,
+        title: note.info.title,
+        txt: getNoteText(noteId)
+    }
+    return Promise.resolve(noteToMail);
 }

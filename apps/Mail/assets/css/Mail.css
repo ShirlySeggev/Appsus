@@ -139,10 +139,20 @@ div.compose-mail {
 span.fa.fa-star {
     width: 50px;
     margin-right: 50px;
-    margin-top: 20px
+    margin-top: 20px;
 }
 
-span {
+span.subject {
+    margin-left: 80px;
+    width: 100px;
+}
+
+span.mail-id {
+    margin-left: 80px;
+    width: 100px;
+}
+
+span.body {
     margin-left: 80px;
     width: 100px;
 }
@@ -168,6 +178,7 @@ span {
 
 form.review-form {
     background-color: #dee2e6;
+    width: 100%;
 }
 
 header.header-compose {
@@ -207,11 +218,6 @@ h1.mail-list {
 
 .fa.fa-star.checked {
     color: yellow
-}
-
-.fa-star {
-    color: white;
-    text-align: center;
 }
 
 
@@ -258,9 +264,11 @@ section.sent-mail-list {
 .inbox,
 .Starred,
 .Sent,
-.Delete {
+.Delete,
+.send-sumbit {
     cursor: pointer;
     color: whitesmoke;
+    background-color: #10BBD5;
     border-radius: 4px;
     padding: 10px 24px;
     border: none;
@@ -272,7 +280,19 @@ section.sent-mail-list {
 .compose,
 .inbox,
 .Starred,
+.send-sumbit,
 .Sent,
 .Delete :hover {
     transition: .3s
+}
+
+input.to,
+input.subject,
+input.body {
+    width: 100%;
+    margin-top: 5px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    background-color: #f1f1f1;
 }
